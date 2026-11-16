@@ -5,9 +5,16 @@ let isPaused = true;
 let songFilter = "";
 
 function getVisibleSongs(songs) {
+  return filterSongs(songs);
+}
+
+function filterSongs(songs) {
   if (songFilter.trim().length) {
-    songs = songs.filter((song) =>
-      song.title.toLowerCase().includes(songFilter.trim().toLowerCase()),
+    // Filter songs based on the search input matching title or artist
+    songs = songs.filter(
+      (song) =>
+        song.title.toLowerCase().includes(songFilter.trim().toLowerCase()) ||
+        song.artist.toLowerCase().includes(songFilter.trim().toLowerCase()),
     );
   }
 
@@ -103,23 +110,29 @@ function initializePlayer(songs) {
 
   updatePlayPauseState();
 
-  for (const song of visibleSongs) {
-    const songTemplate = document
-      .querySelector("#song-template")
-      .content.cloneNode(true);
+  if (visibleSongs.length) {
+    for (const song of visibleSongs) {
+      const songTemplate = document
+        .querySelector("#song-template")
+        .content.cloneNode(true);
 
-    const songCard = songTemplate.querySelector(".music-player__card");
+      const songCard = songTemplate.querySelector(".music-player__card");
 
-    songTemplate.querySelector(".music-player__song-title").textContent =
-      song.title;
-    songTemplate.querySelector(".music-player__song-artist").textContent =
-      song.artist;
-    songTemplate.querySelector(".music-player__song-genre").textContent =
-      song.genre;
-    songTemplate.querySelector(".music-player__song-duration").textContent =
-      formatDuration(song.duration);
-    songCard.onclick = () => setCurrentSong(song.id);
-    songsContainer.appendChild(songTemplate);
+      songTemplate.querySelector(".music-player__song-title").textContent =
+        song.title;
+      songTemplate.querySelector(".music-player__song-artist").textContent =
+        song.artist;
+      songTemplate.querySelector(".music-player__song-genre").textContent =
+        song.genre;
+      songTemplate.querySelector(".music-player__song-duration").textContent =
+        formatDuration(song.duration);
+      songCard.onclick = () => setCurrentSong(song.id);
+      songsContainer.appendChild(songTemplate);
+    }
+  } else {
+    const noSongsMessage = document.createElement("p");
+    noSongsMessage.textContent = "Fant ingen sanger :(";
+    songsContainer.appendChild(noSongsMessage);
   }
 
   if (currentSong) {

@@ -50,8 +50,8 @@ h1 {
 .music-player__songs-header,
 .music-player__card {
   display: grid;
-  grid-template-columns: 2fr 1.5fr 1fr 90px;
-  grid-template-areas: "title artist genre duration";
+  grid-template-columns: 2fr 1.5fr 1fr 90px 50px;
+  grid-template-areas: "title artist genre duration add";
   align-items: center;
   gap: 1rem;
   padding: 12px;
@@ -86,6 +86,10 @@ h1 {
 .music-player__header-duration,
 .music-player__song-duration {
   grid-area: duration;
+}
+.music-player__header-add,
+.music-player__song-add {
+  grid-area: add;
 }
 
 .music-player__navigation {

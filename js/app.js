@@ -3,6 +3,7 @@ songs.sort((s1, s2) => s1.id - s2.id);
 let currentSongId = undefined;
 let isPaused = true;
 let songFilter = "";
+let playlist = [];
 
 function getVisibleSongs(songs) {
   return filterSongs(songs);
@@ -161,4 +162,13 @@ if (!songs.length) {
   console.error("No songs available");
 } else {
   initializePlayer(songs);
+}
+
+function addSongToPlaylist(element) {
+  const songCard = element.closest(".music-player__card");
+  const songTitle = songCard.querySelector(
+    ".music-player__song-title",
+  ).textContent;
+  console.log("Adding song to playlist:", songTitle);
+  playlist.push(songTitle);
 }

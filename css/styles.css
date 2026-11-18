@@ -163,3 +163,8 @@ h1 {
 .music-player__info {
   padding: 0rem 1rem 1rem 1rem;
 }
+
+.music-player__songs-list {
+  min-width: 600px;
+  width: 600px;
+}

@@ -131,6 +131,7 @@ function initializePlayer(songs) {
     }
   } else {
     const noSongsMessage = document.createElement("p");
+    noSongsMessage.classList.add("music-player__card");
     noSongsMessage.textContent = "Fant ingen sanger :(";
     songsContainer.appendChild(noSongsMessage);
   }

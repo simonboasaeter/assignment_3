@@ -94,7 +94,7 @@ h1 {
 
 .music-player__navigation {
   display: flex;
-  justify-content: center;
+  justify-content: end;
   width: 100%;
   gap: 1rem;
 }
@@ -171,4 +171,9 @@ h1 {
 .music-player__songs-list {
   min-width: 600px;
   width: 600px;
+}
+
+.music-player__play-bar__current-song-title,
+.music-player__play-bar__current-song-artist {
+  white-space: nowrap;
 }

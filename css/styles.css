@@ -19,7 +19,7 @@
 
 .music-player__header {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   padding: 6px;
 }
 
@@ -173,7 +173,7 @@
   }
 
   .music-player__playlist-card span {
-    overflow-wrap: anywhere;
+    word-wrap: break-word;
   }
 
   .music-player__songs-list {
@@ -181,7 +181,6 @@
     min-width: 0;
   }
 
-  /* Use two lines per song and keep the add button on the right. */
   .music-player__songs-header,
   .music-player__card {
     grid-template-columns: minmax(0, 1fr) 56px 44px;
@@ -190,7 +189,7 @@
       "artist genre    add";
     gap: 4px 8px;
     padding: 8px;
-    overflow-wrap: anywhere;
+    word-wrap: break-word;
   }
 
   .music-player__song-add,
@@ -207,7 +206,7 @@
   .music-player__play-bar__current-song-title,
   .music-player__play-bar__current-song-artist {
     white-space: normal;
-    overflow-wrap: anywhere;
+    word-wrap: break-word;
   }
 
   footer {

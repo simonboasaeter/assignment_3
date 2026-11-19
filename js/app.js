@@ -33,32 +33,6 @@ function getCurrentSong(songs) {
   return songs[currentSongIndex];
 }
 
-function playNextSong(songs) {
-  if (!currentSongId) {
-    return;
-  }
-
-  const currentSongIndex = songs.findIndex((song) => song.id === currentSongId);
-  if (currentSongIndex < songs.length - 1) {
-    currentSongId = songs[currentSongIndex + 1].id;
-  }
-
-  playSong();
-}
-
-function playPreviousSong(songs) {
-  if (!currentSongId) {
-    return;
-  }
-
-  const currentSongIndex = songs.findIndex((song) => song.id === currentSongId);
-  if (currentSongIndex > 0) {
-    currentSongId = songs[currentSongIndex - 1].id;
-  }
-
-  playSong();
-}
-
 function formatDuration(duration) {
   const [minutes, seconds] = String(
     Math.floor(duration / 60) + ":" + (duration % 60),
@@ -67,40 +41,7 @@ function formatDuration(duration) {
 }
 
 function setCurrentSong(id) {
-  console.log("Setting current song to ID:", id);
   currentSongId = id;
-  playSong();
-}
-
-function togglePlayPause() {
-  isPaused = !isPaused;
-  if (isPaused) {
-    pauseSong();
-  } else {
-    playSong();
-  }
-
-  updatePlayPauseState();
-}
-
-function updatePlayPauseState() {
-  const playButton = getPlayButton();
-
-  if (isPaused) {
-    playButton.textContent = "▶";
-    playButton.title = "Spill av";
-  } else {
-    playButton.textContent = "⏸";
-    playButton.title = "Pause";
-  }
-}
-
-function playSong() {
-  initializePlayer(songs);
-}
-
-function pauseSong() {
-  //
 }
 
 function initializePlayer(songs) {
@@ -109,8 +50,6 @@ function initializePlayer(songs) {
 
   const songsContainer = document.querySelector(".music-player__songs-list");
   songsContainer.replaceChildren();
-
-  updatePlayPauseState();
 
   if (visibleSongs.length) {
     for (const song of visibleSongs) {
@@ -196,10 +135,6 @@ function removeSongFromPlaylist(song) {
   renderPlaylist();
 }
 
-function getPlayButton() {
-  return document.querySelector(".music-player__navigation-button--play");
-}
-
 function loadPlaylistSongs() {
   const storedPlaylists = localStorage.getItem("playlistSongs");
 
@@ -208,7 +143,7 @@ function loadPlaylistSongs() {
   }
 }
 
-function renderPlaylist() {
+function renderPlaylist(songs) {
   const list = document.querySelector(".music-player__playlist-list");
   const total = document.querySelector(".music-player__playlist-total");
   list.replaceChildren();
@@ -248,23 +183,13 @@ function renderPlaylist() {
 
 function runOnLoad() {
   loadPlaylistSongs();
-  renderPlaylist();
+  renderPlaylist(songs);
   initializePlayer(songs);
 
   document.querySelector("#song-search").addEventListener("input", (event) => {
     songFilter = event.target.value;
     initializePlayer(songs);
   });
-
-  document.querySelector("#previous-song").addEventListener("click", () => {
-    playPreviousSong(songs);
-  });
-
-  document.querySelector("#next-song").addEventListener("click", () => {
-    playNextSong(songs);
-  });
-
-  getPlayButton().addEventListener("click", togglePlayPause);
 }
 
 // Run the initialization logic when the page loads.

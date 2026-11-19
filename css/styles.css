@@ -19,7 +19,7 @@
 
 .music-player__header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 6px;
 }
 
@@ -211,5 +211,16 @@
 
   footer {
     margin-top: 8px;
+  }
+
+  .music-player__select-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #genre-filter,
+  #song-sort,
+  #song-search {
+    width: 100%;
   }
 }

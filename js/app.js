@@ -1,10 +1,10 @@
-songs.sort((s1, s2) => s1.id - s2.id);
-
 // State variables
 let currentSongId = undefined;
 let isPaused = true;
 let songFilter = "";
 const playlistSongs = [];
+let selectedGenre = "";
+let sortBy = "id";
 
 // Functions below
 function getVisibleSongs(songs) {

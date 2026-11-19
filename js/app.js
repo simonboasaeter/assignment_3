@@ -143,7 +143,7 @@ function loadPlaylistSongs() {
   }
 }
 
-function renderPlaylist(songs) {
+function renderPlaylist() {
   const list = document.querySelector(".music-player__playlist-list");
   const total = document.querySelector(".music-player__playlist-total");
   list.replaceChildren();
@@ -183,7 +183,7 @@ function renderPlaylist(songs) {
 
 function runOnLoad() {
   loadPlaylistSongs();
-  renderPlaylist(songs);
+  renderPlaylist();
   initializePlayer(songs);
 
   document.querySelector("#song-search").addEventListener("input", (event) => {

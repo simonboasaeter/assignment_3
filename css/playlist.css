@@ -32,3 +32,14 @@
   background-color: var(--color-panel);
   border-radius: var(--radius-small);
 }
+
+@media (max-width: 900px) {
+  .music-player__playlist-card span {
+    word-wrap: break-word;
+  }
+
+  .music-player__playlist-card button {
+    min-height: 30px;
+    font-size: 12px;
+  }
+}

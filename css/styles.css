@@ -172,10 +172,6 @@
     overflow-y: auto;
   }
 
-  .music-player__playlist-card span {
-    word-wrap: break-word;
-  }
-
   .music-player__songs-list {
     width: 100%;
     min-width: 0;
@@ -192,8 +188,7 @@
     word-wrap: break-word;
   }
 
-  .music-player__song-add,
-  .music-player__playlist-card button {
+  .music-player__song-add {
     min-height: 30px;
     font-size: 12px;
   }

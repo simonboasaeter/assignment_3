@@ -21,6 +21,9 @@
   display: flex;
   flex-direction: column;
   gap: 3px;
+  background-color: var(--color-list);
+  padding: 4px;
+  border-radius: 4px;
 }
 
 .music-player__playlist-card {

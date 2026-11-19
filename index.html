@@ -10,6 +10,12 @@
   </head>
   <body>
     <main class="music-player">
+      <aside class="music-player__playlist">
+        <h2>Min spilleliste</h2>
+        <div class="music-player__playlist-list"></div>
+        <p class="music-player__playlist-total"></p>
+      </aside>
+
       <div class="music-player__container">
         <div class="music-player__header">
           <input
@@ -38,24 +44,35 @@
         <div class="music-player__controls">
           <div class="music-player__play-bar">
             <div class="music-player__navigation">
-              <div
+              <button
+                type="button"
+                id="previous-song"
                 class="music-player__navigation-button"
-                onclick="playPreviousSong(songs)"
+                title="Forrige sang"
               >
-                <p class="music-player__navigation-button-icon">&#9198;</p>
-              </div>
-              <div
+                <span class="music-player__navigation-button-icon">
+                  &#9198;
+                </span>
+              </button>
+
+              <button
+                type="button"
                 class="music-player__navigation-button music-player__navigation-button--play"
-                onclick="togglePlayPause()"
+                title="Spill av"
               >
-                Play
-              </div>
-              <div
+                ▶
+              </button>
+
+              <button
+                type="button"
+                id="next-song"
                 class="music-player__navigation-button"
-                onclick="playNextSong(songs)"
+                title="Neste sang"
               >
-                <p class="music-player__navigation-button-icon">&#9197;</p>
-              </div>
+                <span class="music-player__navigation-button-icon">
+                  &#9197;
+                </span>
+              </button>
             </div>
           </div>
         </div>
@@ -73,7 +90,7 @@
             <p class="music-player__song-artist"></p>
             <p class="music-player__song-genre"></p>
             <p class="music-player__song-duration"></p>
-            <span class="music-player__song-add" onclick="addSongToPlaylist(this)">+</span>
+            <button type="button" class="music-player__song-add">+</button>
           </div>
         </template>
       </div>

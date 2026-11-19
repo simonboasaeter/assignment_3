@@ -40,10 +40,6 @@ function formatDuration(duration) {
   return `${minutes}:${seconds.padStart(2, "0")}`;
 }
 
-function setCurrentSong(id) {
-  currentSongId = id;
-}
-
 function initializePlayer(songs) {
   const currentSong = getCurrentSong(songs);
   const visibleSongs = getVisibleSongs(songs);
@@ -68,11 +64,6 @@ function initializePlayer(songs) {
       songTemplate.querySelector(".music-player__song-duration").textContent =
         formatDuration(song.duration);
       const addButton = songCard.querySelector(".music-player__song-add");
-
-      songCard.addEventListener("click", () => {
-        isPaused = false;
-        setCurrentSong(song.id);
-      });
 
       addButton.addEventListener("click", (event) => {
         event.stopPropagation();

@@ -3,7 +3,7 @@ let currentSongId = undefined;
 let songFilter = "";
 const playlistSongs = [];
 let selectedGenre = "";
-let sortBy = "id";
+let sortBy = "title";
 
 // Functions below
 function getVisibleSongs(songs) {

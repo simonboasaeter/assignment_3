@@ -1,6 +1,5 @@
 // State variables
 let currentSongId = undefined;
-let isPaused = true;
 let songFilter = "";
 const playlistSongs = [];
 let selectedGenre = "";
@@ -8,7 +7,25 @@ let sortBy = "id";
 
 // Functions below
 function getVisibleSongs(songs) {
-  return filterSongs(songs);
+  let visibleSongs = [...filterSongs(songs)];
+
+  if (selectedGenre) {
+    visibleSongs = visibleSongs.filter((song) => song.genre === selectedGenre);
+  }
+
+  return sortSongs(visibleSongs);
+}
+
+function sortSongs(songs) {
+  if (sortBy === "title" || sortBy === "artist") {
+    return songs.sort((lhs, rhs) => lhs[sortBy].localeCompare(rhs[sortBy]));
+  }
+
+  if (sortBy === "duration") {
+    return songs.sort((a, b) => a.duration - b.duration);
+  }
+
+  return songs.sort((a, b) => a.id - b.id);
 }
 
 function filterSongs(songs) {
@@ -179,6 +196,23 @@ function runOnLoad() {
 
   document.querySelector("#song-search").addEventListener("input", (event) => {
     songFilter = event.target.value;
+    initializePlayer(songs);
+  });
+
+  const genreFilter = document.querySelector("#genre-filter");
+  const genres = new Set(songs.map((song) => song.genre));
+
+  for (const genre of genres) {
+    genreFilter.add(new Option(genre, genre));
+  }
+
+  genreFilter.addEventListener("change", (event) => {
+    selectedGenre = event.target.value;
+    initializePlayer(songs);
+  });
+
+  document.querySelector("#song-sort").addEventListener("change", (event) => {
+    sortBy = event.target.value;
     initializePlayer(songs);
   });
 }
